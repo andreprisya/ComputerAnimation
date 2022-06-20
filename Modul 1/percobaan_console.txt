@@ -1,0 +1,59 @@
+# 1
+a=1
+b=5
+if a < b :
+    print ("Yes a lebih kecil dari b")
+elif not a < b and (not a ==b) :
+    print ("Tidak lebih dari dan tidak sama dengan b")
+elif a == b :
+    print ("Yes a sama dengan b")
+    
+# 2
+listnama = ["john", "mary", "david"]
+name = "john"
+if name in listnama :
+    print ("%s ada di dalam list nama" %name)
+
+
+# 3
+listnama = ["john", "mary", "david"]
+name = "juwita"
+if name not in listnama :
+    print("%s TIDAK ada di dalam list nama" %name)
+else :
+    print ("%s ADA di dalam list nama" %name)
+    
+
+# 4
+def print_hello_world() :
+    print("Hello World")
+    
+def print_goodbye() :
+    print("Goodbye")
+    
+def print_hello_and_goodbye() :
+    print_hello_world()
+    print_goodbye()
+    
+print_hello_world()
+
+print_goodbye()
+
+print_hello_and_goodbye()
+
+# 5
+def box_print(text) :
+    print("**********")
+    print(text)
+    print("**********")
+    
+box_print("Hello there")
+
+# 6
+def box_print(text, times) :
+    print("**********")
+    for x in range (0, times) :
+        print(text)
+    print("**********")
+    
+box_print("Hello there", 5)

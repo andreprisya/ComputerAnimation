@@ -1,0 +1,24 @@
+import bpy
+
+def CreateMesh(name, origin, titik, garis, sisi) :
+    new_mesh = bpy.data.meshes.new("3 Titik 3 Sisi ")
+    new_mesh.from_pydata(titik,garis,sisi)
+    new_mesh.update()
+    
+    new_object = bpy.data.objects.new(name, new_mesh)
+    
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)
+    
+    return new_object
+
+def run(origin) :
+    (x,y,z) = (0.7,0.25,0.97)
+    
+    titik = [(x,x,0),(y,-z,0),(-z,y,0)]
+    garis = [(0,1),(1,2),(2,0)]
+    faces = [(0,1,2)]
+    ob = CreateMesh('Mesh Segitiga', (0,0,0), titik, garis, faces)
+    
+if __name__ == "__main__" :
+    run((0,0,0))

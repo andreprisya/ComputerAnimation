@@ -1,0 +1,20 @@
+import bpy
+
+titik1 = (-1,1,0)
+titik2 = (-1,-1,0)
+titik3 = (1,-1,0)
+titik4 = (1,1,0)
+titik5 = (1,2,0)
+titik6 = (-1,2,0)
+
+verts = [titik1, titik2, titik3, titik4, titik5, titik6]
+edges = [(0,1),(1,2),(2,3),(3,4),(4,5),(5,0)]
+faces = [(0,2,4,5)]
+
+new_mesh = bpy.data.meshes.new("Mesh Persegi Panjang ")
+new_mesh.from_pydata(verts,edges,faces)
+new_mesh.update()
+
+new_object = bpy.data.objects.new("Mesh Persegi Panjang", new_mesh)
+view_layer = bpy.context.view_layer
+view_layer.active_layer_collection.collection.objects.link(new_object)

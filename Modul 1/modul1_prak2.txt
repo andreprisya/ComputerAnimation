@@ -1,0 +1,15 @@
+import bpy
+
+titik1 = (0,0,0)
+titik2 = (0,5,0)
+titik3 = (5,5,0)
+verts = [titik1, titik2, titik3]
+
+new_mesh = bpy.data.meshes.new("new_mesh 3 vertices ")
+new_mesh.from_pydata(verts,[],[])
+new_mesh.update()
+
+new_object = bpy.data.objects.new("new_object 3 vertices", new_mesh)
+
+view_layer = bpy.context.view_layer
+view_layer.active_layer_collection.collection.objects.link(new_object)

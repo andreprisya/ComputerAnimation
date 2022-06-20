@@ -1,0 +1,18 @@
+import bpy
+
+titik1 = (-1,1,0)
+titik2 = (-1,-1,0)
+titik3 = (1,-1,0)
+titik4 = (1,1,0)
+
+verts = [titik1, titik2, titik3, titik4]
+edges = [(0,1),(1,2),(2,3),(3,0)]
+
+new_mesh = bpy.data.meshes.new("Persegi Empat ")
+new_mesh.from_pydata(verts,edges,[])
+new_mesh.update()
+
+new_object = bpy.data.objects.new("Persegi Empat", new_mesh)
+
+view_layer = bpy.context.view_layer
+view_layer.active_layer_collection.collection.objects.link(new_object)
