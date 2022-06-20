@@ -1,0 +1,59 @@
+import bpy
+
+ax = 0
+ay = 0
+az = 0
+A = (ax,ay,az)
+
+bx = 0
+by = 5
+bz = 0
+B = (bx,by,bz)
+
+cx = 5
+cy = 5
+cz = 0
+C = (cx,cy,cz)
+
+titik = [A,B,C]
+garis = [(0,1),(1,2),(0,2)]
+
+new_mesh = bpy.data.meshes.new("Titik Awal ")
+new_mesh.from_pydata((titik),(garis),[])
+new_mesh.update()
+
+new_object = bpy.data.objects.new("Titik Awal ABC", new_mesh)
+
+view_layer = bpy.context.view_layer
+view_layer.active_layer_collection.collection.objects.link(new_object)
+
+Tx = (7)
+Ty = (0)
+Tz = (0)
+
+ax = ax + Tx
+ay = ay + Ty
+az = az + Tz
+A1 = (ax,ay,az)
+
+bx = bx + Tx
+by = by + Ty
+bz = bz + Tz
+B1 = (bx,by,bz)
+
+cx = cx + Tx
+cy = cy + Ty
+cz = cz + Tz
+C1 = (cx,cy,cz)
+
+titik1 = [A1,B1,C1]
+garis1 = [(0,1),(1,2),(0,2)]
+
+new_mesh = bpy.data.meshes.new("Titik Baru ")
+new_mesh.from_pydata((titik1),(garis1),[])
+new_mesh.update()
+
+new_object = bpy.data.objects.new("Titik Baru A'B'C", new_mesh)
+
+view_layer = bpy.context.view_layer
+view_layer.active_layer_collection.collection.objects.link(new_object)

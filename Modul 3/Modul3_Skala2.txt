@@ -1,0 +1,45 @@
+import bpy
+
+def CreateMesh(name, origin, titik, garis, sisi):
+    new_mesh = bpy.data.meshes.new("Titik ")
+    new_mesh.from_pydata((titik),(garis),[])
+    new_mesh.update()
+
+    new_object = bpy.data.objects.new("Titik ABC", new_mesh)
+
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)
+
+    return new_object
+
+def Skala_FixedPoint(x,y,z,Sx,Sy,Sz,xf,yf,zf):
+    x1 = xf+((x-xf)*Sx)
+    y1 = yf+((y-yf)*Sy)
+    z1 = zf+((z-zf)*Sz)
+    S = (x1,y1,z1)
+    return S
+
+def run(origin):
+    (ax,ay,az) = (0,0,1)
+    A = (ax,ay,az)
+
+    (bx,by,bz) = (0,5,1)
+    B = (bx,by,bz)
+
+    titik = [A,B]
+    garis = [(0,1)]
+    
+    ob = CreateMesh('Mesh Awal',(0,0,0),titik,garis,[])
+
+    (Sx, Sy, Sz) = (7,2,2)
+    (xf,yf,zf) = ((ax+bx)/2, (ay+by)/2, (az+bz)/2)
+    
+    A1 = Skala_FixedPoint(ax,ay,az,Sx,Sy,Sz,xf,yf,zf)
+    B1 = Skala_FixedPoint(bx,by,bz,Sx,Sy,Sz,xf,yf,zf)
+
+    titik1 = [A1,B1]
+    garis1 = [(0,1)]
+    ob = CreateMesh('Mesh Baru',(0,0,0),titik1,garis1,[])
+
+if __name__ == "__main__":
+    run((0,0,0))

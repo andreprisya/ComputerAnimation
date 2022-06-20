@@ -1,0 +1,38 @@
+import bpy
+
+def plane1(verts, edges, faces):
+    mymesh = bpy.data.meshes.new("Plane1")
+    myobject = bpy.data.objects.new("Plane1", mymesh)
+    bpy.context.scene.collection.objects.link(myobject)
+    mymesh.from_pydata(verts,[],faces)
+    mymesh.update()
+    return myobject
+
+def createMesh(name, origin, verts, edges, faces):
+    me = bpy.data.meshes.new(name+'Mesh')
+    ob = bpy.data.objects.new(name, me)
+    ob.location = origin
+    bpy.context.scene.collection.objects.link(ob)
+    me.from_pydata(verts, edges, faces)
+    me.update(calc_edges=True)
+    return ob
+
+def run(origin):
+    (x,y,z) = (1,1,1)
+    verts1 = ((x,x,0),(y,-z,0),(-z,y,0))
+    edges1 = ((1,0),(1,2),(2,0))
+    faces = [(0,1,2)]
+    
+    ob = createMesh('Mesh Awal', (5,4,1), verts1, edges1, faces)
+    bpy.ops.mesh.primitive_circle_add(vertices=10, radius=1.0, fill_type='TRIFAN', location=(-1,4,1))
+    bpy.ops.mesh.primitive_circle_add(vertices=30, radius=1.0, fill_type='TRIFAN', location=(1,4,1))
+    bpy.ops.mesh.primitive_circle_add(vertices=5, radius=1.0, fill_type='NGON', location=(3,4,1))
+    
+    verts = [(0,0,0),(3,0,0),(3,3,0),(0,3,0)]
+    faces = [(0,1,2,3)]
+    myobject = plane1(verts,[],faces)
+    return
+
+if __name__ == "__main__":
+    run((0,0,0))
+    

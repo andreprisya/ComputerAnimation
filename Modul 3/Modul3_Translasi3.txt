@@ -1,0 +1,45 @@
+import bpy
+def CreateMesh(name, origin, titik, garis, sisi):
+    new_mesh = bpy.data.meshes.new("Titik ")
+    new_mesh.from_pydata((titik),(garis),[])
+    new_mesh.update()
+
+    new_object = bpy.data.objects.new("Titik ABC", new_mesh)
+
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)
+
+    return new_object
+
+def translasi(x,y,z,Tx,Ty,Tz):
+    T = (x+Tx, y+Ty, z+Tz)
+    return T
+
+def run(origin):
+    (ax,ay,az) = (0,0,0)
+    A = (ax,ay,az)
+
+    (bx,by,bz) = (0,5,0)
+    B = (bx,by,bz)
+
+    (cx,cy,cz) = (5,5,0)
+    C = (cx,cy,cz)
+
+    titik = [A,B,C]
+    garis = [(0,1),(1,2),(0,2)]
+    
+    ob = CreateMesh('Mesh Awal',(0,0,0),titik,garis,[])
+
+    Tx = (7)
+    Ty = (0)
+    Tz = (0)
+    A1 = translasi(ax,ay,az,Tx,Ty,Tz)
+    B1 = translasi(bx,by,bz,Tx,Ty,Tz)
+    C1 = translasi(cx,cy,cz,Tx,Ty,Tz)
+
+    titik1 = [A1,B1,C1]
+    garis1 = [(0,1),(1,2),(0,2)]
+    ob = CreateMesh('Mesh Baru',(0,0,0),titik1,garis1,[])
+
+if __name__ == "__main__":
+    run((0,0,0))
