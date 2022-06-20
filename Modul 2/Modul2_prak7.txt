@@ -1,0 +1,14 @@
+import bpy
+
+merah = bpy.data.materials.new("Red")
+merah.diffuse_color = (1,0,0,0)
+
+for i in range (5):
+    x = i
+    y = 0
+    z = i
+    
+    bpy.ops.mesh.primitive_plane_add(location=(x,y,z))
+    ob = bpy.context.object
+    plane = ob.data
+    plane.materials.append(merah)

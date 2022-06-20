@@ -1,0 +1,16 @@
+import bpy
+
+x = 0
+for x in range (5):
+    for y in range (5):
+        for z in range (5):
+            coord = (x,y,z)
+            verts = [coord]
+            
+            new_mesh = bpy.data.meshes.new("Looping Vertex ")
+            new_mesh.from_pydata(verts,[],[])
+            new_mesh.update()
+            
+            new_object = bpy.data.objects.new("Looping Vertex", new_mesh)
+            view_layer = bpy.context.view_layer 
+            view_layer.active_layer_collection.collection.objects.link(new_object)

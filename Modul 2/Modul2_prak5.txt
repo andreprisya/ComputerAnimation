@@ -1,0 +1,18 @@
+import bpy
+
+for i in range (5):
+    x = i
+    y = 0
+    z = i
+    
+    coord = (x,y,z)
+    verts = [(x,y,z),(x,y+5,z),(x+5,y+5,z),(x+5,y,z)]
+    faces = [(0,1,2,3)]
+    
+    new_mesh = bpy.data.meshes.new("Plane ")
+    new_mesh.from_pydata(verts,[],faces)
+    new_mesh.update()
+    
+    new_object = bpy.data.objects.new("Plane", new_mesh)
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)

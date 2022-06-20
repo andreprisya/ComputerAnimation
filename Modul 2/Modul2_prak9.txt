@@ -1,0 +1,16 @@
+import bpy
+import random
+
+biru = bpy.data.materials.new("Blue")
+biru.diffuse_color = (0,0,1,0)
+
+for i in range (20):
+    x = random.uniform(0,5)
+    y = random.uniform(0,5)
+    z = random.uniform(0,5)
+    
+    bpy.ops.mesh.primitive_plane_add(location=(x,y,z))
+    ob = bpy.context.object
+    plane = ob.data
+    plane.materials.append(biru)
+    print(i)

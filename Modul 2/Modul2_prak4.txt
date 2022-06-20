@@ -1,0 +1,26 @@
+import bpy
+
+def CreatePlane(name, origin, titik, garis, sisi):
+    new_mesh = bpy.data.meshes.new("4 titik 1 sisi ")
+    new_mesh.from_pydata(titik,garis,sisi)
+    new_mesh.update()
+    
+    new_object = bpy.data.objects.new(name, new_mesh)
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)
+    
+    return new_object
+
+def run(origin):
+    verts1 = [(0,0,0),(0,5,0),(5,5,0),(5,0,0)]
+    verts2 = [(0,0,0),(0,-5,0),(-5,-5,0),(-5,0,0)]
+    
+    faces1 = [(0,1,2,3)]
+    faces2 = [(0,1,2,3)]
+    
+    ob1 = CreatePlane('Plane 1',(0,0,0),verts1,[],faces1)
+    ob2 = CreatePlane('Plane 2',(0,0,0),verts2,[],faces2)
+    
+
+if __name__=="__main__":
+    run((0,0,0))

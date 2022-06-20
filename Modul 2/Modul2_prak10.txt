@@ -1,0 +1,12 @@
+import bpy
+
+biru = bpy.data.materials.new("Biru")
+biru.diffuse_color = (0,0,1,0)
+
+for x in range (5):
+    for y in range (5):
+        for z in range (5):
+            bpy.ops.mesh.primitive_plane_add(location=(x*3,y*3,z))
+            ob = bpy.context.object
+            plane = ob.data
+            plane.materials.append(biru)

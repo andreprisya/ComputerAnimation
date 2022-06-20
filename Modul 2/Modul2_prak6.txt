@@ -1,0 +1,8 @@
+import bpy
+
+for i in range (5):
+    x = i
+    y = 0
+    z = i
+    
+    bpy.ops.mesh.primitive_plane_add(location=(x,y,z))
