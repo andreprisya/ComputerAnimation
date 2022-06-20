@@ -1,0 +1,26 @@
+import bpy
+import math
+from math import pi
+
+def run(origin):
+    bpy.ops.object.text_add(location=origin, rotation=(pi/2,0,0))
+    ob = bpy.context.object
+    ob.data.body = "Politeknik Caltex Riau"
+    tcu = ob.data
+    tcu.name = "PoliteknikData"
+    tcu.body = "Politeknik, PCR"
+    tcu.font = bpy.data.fonts[0]
+    tcu.offset_x = -9
+    tcu.offset_y = -0.25
+    tcu.shear = 0.5
+    tcu.size = 3
+    tcu.space_character = 2
+    tcu.space_word = 4
+    
+    tcu.extrude = 0.2
+    tcu.fill_mode = "FRONT"
+    tcu.use_fill_deform = True
+    tcu.fill_mode = "FRONT"
+    
+if __name__ == "__main__":
+    run((0,0,0))

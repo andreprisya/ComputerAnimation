@@ -1,0 +1,16 @@
+import bpy
+import math
+
+x = 0
+y = 0
+z = 0
+
+for x in range (5):
+    for y in range (5):
+        x = x
+        y = y
+        z = z
+        bpy.ops.mesh.primitive_cube_add(size=1.5, location=(x,y,z))
+        ob = bpy.context.active_object
+        ob.scale = (0.5,0.5,0.5)
+        ob.rotation_euler = [0,0,math.radians(45)]

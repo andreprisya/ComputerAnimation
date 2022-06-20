@@ -1,0 +1,5 @@
+import bpy
+
+bpy.ops.mesh.primitive_monkey_add(align="WORLD")
+
+bpy.ops.object.shade_smooth()

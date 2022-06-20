@@ -1,0 +1,44 @@
+import bpy
+import math
+
+def CreateMesh(name, origin, titik, garis, sisi):
+    
+    new_mesh = bpy.data.meshes.new("Titik")
+    new_mesh.from_pydata((titik),(garis),[])
+    new_mesh.update()
+    
+    new_object = bpy.data.objects.new("Titik ABC", new_mesh)
+    
+    view_layer = bpy.context.view_layer
+    view_layer.active_layer_collection.collection.objects.link(new_object)
+    
+    return new_object
+
+def RotasiPivotPoint(x,y,z,xp,yp,sudut):
+    X = xp + ((x-xp)*(math.cos(sudut)))-((y-yp)*(math.sin(sudut)))
+    Y = yp + ((x-xp)*(math.sin(sudut)))+((y-yp)*(math.cos(sudut)))
+    rot = (X,Y,z)
+    return rot
+
+def run(origin):
+    (ax,ay,az) = (0,0,1)
+    A = (ax,ay,az)
+    
+    (bx,by,bz) = (0,5,1)
+    B = (bx,by,bz)
+    
+    titik = [A,B]
+    garis = [(0,1)]
+    ob = CreateMesh('Mesh Awal',(0,0,0),titik,garis,[])
+    sudut = 89.54
+    
+    (xp,yp,zp) = ((ax+bx)/2,(ay+by)/2,(az+bz)/2)
+    A1 = RotasiPivotPoint(ax,ay,az,xp,yp,sudut)
+    B1 = RotasiPivotPoint(bx,by,bz,xp,yp,sudut)
+    
+    titik1 = [A1,B1]
+    garis1 = [(0,1)]
+    ob2 = CreateMesh('Mesh Akhir',(0,0,0),titik1,garis1,[])
+    
+if __name__ == "__main__":
+    run((0,0,0))

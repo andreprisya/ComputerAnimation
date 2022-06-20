@@ -1,0 +1,16 @@
+import bpy
+bpy.ops.mesh.primitive_plane_add(location=(0,0,0))
+ob1 = bpy.context.object
+ob1.name = "Plane1"
+my_mesh=ob1.data
+bpy.ops.mesh.primitive_plane_add(location=(3,3,3))
+ob2 = bpy.context.object
+ob2.name = "Plane2"
+my_mesh = ob2.data
+
+objects = bpy.data.objects
+
+a = objects['Plane1']
+b = objects['Plane2']
+
+b.parent = a

@@ -1,0 +1,11 @@
+import bpy
+
+x = 5
+y = 5
+z = 0
+
+for i in range (0,5):
+    x = i*3
+    y = 0
+    z = 0
+    bpy.ops.mesh.primitive_cube_add(location=(x,y,z))

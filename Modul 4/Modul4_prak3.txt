@@ -1,0 +1,8 @@
+import bpy
+
+bpy.ops.mesh.primitive_cube_add(location=(1,-1,1))
+x = 5
+y = 5
+z = 0
+
+bpy.ops.mesh.primitive_cube_add(location=(x,y,z))

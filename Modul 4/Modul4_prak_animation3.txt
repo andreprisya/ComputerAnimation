@@ -1,0 +1,17 @@
+import bpy
+from random import random
+
+bpy.ops.mesh.primitive_monkey_add(location=(0,0,0))
+obj = bpy.context.object
+
+frame_num = 0 
+
+for f in range (0,100):
+    for v in obj.data.vertices:
+        if f%2:
+            v.co.z -= 5
+        else :
+            v.co.z += 5
+        
+        v.keyframe_insert('co', frame = frame_num)
+    frame_num += 5

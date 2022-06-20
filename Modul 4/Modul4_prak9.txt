@@ -1,0 +1,3 @@
+import bpy
+
+bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1.0, depth=2.0, end_fill_type='NGON', location=(0.0, 0.0, 0.0))
